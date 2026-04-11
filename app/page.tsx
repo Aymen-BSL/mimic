@@ -1,65 +1,43 @@
-import Image from "next/image";
+import { LandingHero } from "@/app/landing-hero";
+import { LandingLogos } from "@/app/landing-logos";
+import { LandingOverview } from "@/app/landing-overview";
+import { LandingPipeline } from "@/app/landing-pipeline";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="grid-surface min-h-screen">
+      {/*
+        The single centered column.
+          max-w-[1170px] = 15 × 78 px = exactly 15 grid cells wide.
+          background-position in globals.css shifts the grid so vertical lines
+          land on the left/right borders of this column at every viewport width.
+
+        pt = 1 grid row of visible background before the first section starts.
+      */}
+      <div
+        className="mx-auto flex w-full max-w-[1170px] flex-col"
+        style={{ paddingTop: "var(--cell)" }}
+      >
+        <LandingHero />
+
+        {/* Hero → Logos: 1-cell gap (visually paired / connected sections) */}
+        <div style={{ marginTop: "var(--cell)" }}>
+          <LandingLogos />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Logos → Overview: 3-cell gap (independent sections) */}
+        <div style={{ marginTop: "var(--gap)" }}>
+          <LandingOverview />
         </div>
-      </main>
-    </div>
+
+        {/* Overview → Pipeline: 3-cell gap */}
+        <div style={{ marginTop: "var(--gap)" }}>
+          <LandingPipeline />
+        </div>
+
+        {/* Trailing 3-cell gap so the last section doesn't butt against the bottom */}
+        <div style={{ height: "var(--gap)" }} />
+      </div>
+    </main>
   );
 }
