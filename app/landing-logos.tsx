@@ -30,9 +30,13 @@ export function LandingLogos() {
         {PARTNER_LOGOS.map((logo) => (
           <div
             key={logo.alt}
-            className="flex h-[78px] items-center justify-center px-6 py-4 opacity-60"
+            className="flex h-[82px] items-center justify-center px-6 py-4 opacity-60"
           >
-            <img alt={logo.alt} className="max-h-11 w-auto object-contain" src={logo.src} />
+            <img
+              alt={logo.alt}
+              className="max-h-11 w-auto object-contain"
+              src={logo.src}
+            />
           </div>
         ))}
       </div>

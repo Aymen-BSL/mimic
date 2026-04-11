@@ -25,7 +25,7 @@ export function LandingOverview() {
   return (
     <FrameShell
       id="product"
-      className="w-full overflow-hidden p-0"
+      className="w-full p-0"
     >
       <section className="bg-[var(--paper)]">
         <div className="px-6 py-8 sm:px-8 lg:px-10 lg:py-[39px]">
