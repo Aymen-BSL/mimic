@@ -14,10 +14,13 @@ export function FrameShell({
   corners = "both",
   id,
 }: FrameShellProps) {
+  const shellClass =
+    cornerTone === "dark" ? "section-shell--dark" : "section-shell";
+
   return (
     <section
       id={id}
-      className={`section-shell relative ${
+      className={`${shellClass} relative ${
         cornerTone === "dark" ? "border-white/10" : ""
       } ${className}`}
     >

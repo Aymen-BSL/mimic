@@ -3,6 +3,11 @@ import { LandingHero } from "@/app/landing-hero";
 import { LandingLogos } from "@/app/landing-logos";
 import { LandingOverview } from "@/app/landing-overview";
 import { LandingPipeline } from "@/app/landing-pipeline";
+import { LandingComparison } from "@/app/landing-comparison";
+import { LandingEnterprise } from "@/app/landing-enterprise";
+import { LandingTestimonials } from "@/app/landing-testimonials";
+import { LandingFaq } from "@/app/landing-faq";
+import { LandingCtaFooter } from "@/app/landing-cta-footer";
 
 export default function Home() {
   return (
@@ -36,6 +41,26 @@ export default function Home() {
         {/* Overview → Pipeline: 3-cell gap */}
         <div style={{ marginTop: "var(--gap)" }}>
           <LandingPipeline />
+        </div>
+
+        <div style={{ marginTop: "var(--gap)" }}>
+          <LandingComparison />
+        </div>
+
+        <div style={{ marginTop: "var(--gap)" }}>
+          <LandingEnterprise />
+        </div>
+
+        <div style={{ marginTop: "var(--gap)" }}>
+          <LandingTestimonials />
+        </div>
+
+        <div style={{ marginTop: "var(--gap)" }}>
+          <LandingFaq />
+        </div>
+
+        <div style={{ marginTop: "var(--gap)" }}>
+          <LandingCtaFooter />
         </div>
 
         {/* Trailing 3-cell gap so the last section doesn't butt against the bottom */}

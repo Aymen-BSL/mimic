@@ -10,10 +10,10 @@ const BRAND_MARK =
 
 const navItems = [
   { href: "#product", label: "Product", active: true },
-  { label: "Company" },
+  { href: "#company", label: "Company" },
   { href: "#solutions", label: "Solutions" },
-  { label: "Resources" },
-  { label: "Pricing" },
+  { href: "#resources", label: "Resources" },
+  { href: "#pricing", label: "Pricing" },
 ];
 
 export function LandingHero() {
