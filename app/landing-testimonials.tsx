@@ -62,7 +62,7 @@ function MetaBlock({
   label: string;
 }) {
   return (
-    <div className="flex items-start gap-3">
+    <div className="flex items-center gap-3">
       <span className="relative inline-flex h-12 w-9 shrink-0 items-center justify-center border border-black/8 bg-white text-black">
         <span className="absolute bottom-[-1px] left-[5px] h-8 w-px bg-black/10" />
         <span className="absolute bottom-[-1px] left-[11px] h-12 w-px bg-black/10" />
