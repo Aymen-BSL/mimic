@@ -7,53 +7,50 @@ const testimonialQuote =
 
 export function LandingTestimonials() {
   return (
-    <FrameShell
-      id="company"
-      className="w-full px-6 py-8 sm:px-8 lg:px-10 lg:py-10"
-    >
-      <section className="space-y-8 lg:space-y-7">
-        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
-          <TestimonialPortraitImage
-            alt="Portrait of testimonial customer 1"
-            src="/imagery/testimonial-person-1.png"
-          />
-          <TestimonialCard />
-        </div>
+    <section id="company" className="w-full space-y-[var(--cell)]">
+      <div className="grid gap-[var(--cell)] lg:grid-cols-[5fr_9fr]">
+        <TestimonialPortraitImage
+          alt="Portrait of testimonial customer 1"
+          src="/imagery/testimonial-person-1.png"
+        />
+        <TestimonialCard />
+      </div>
 
-        <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-6">
-          <TestimonialCard />
-          <TestimonialPortraitImage
-            alt="Portrait of testimonial customer 2"
-            src="/imagery/testimonial-person-2.png"
-          />
-        </div>
-      </section>
-    </FrameShell>
+      <div className="grid gap-[var(--cell)] lg:grid-cols-[9fr_5fr]">
+        <TestimonialCard />
+        <TestimonialPortraitImage
+          alt="Portrait of testimonial customer 2"
+          src="/imagery/testimonial-person-2.png"
+        />
+      </div>
+    </section>
   );
 }
 
 function TestimonialPortraitImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <img
-      alt={alt}
-      className="h-[360px] w-full object-cover sm:h-[400px] lg:h-[356px]"
-      src={src}
-    />
+    <FrameShell className="flex h-[360px] w-full border-none p-0 shadow-none sm:h-[400px] lg:h-[calc(6*var(--cell))]">
+      <img
+        alt={alt}
+        className="h-full w-full object-cover object-[center_20%]"
+        src={src}
+      />
+    </FrameShell>
   );
 }
 
 function TestimonialCard() {
   return (
-    <article className="flex h-[360px] flex-col justify-between border border-black/8 bg-[rgba(255,255,255,0.92)] px-5 py-5 sm:h-[400px] sm:px-6 sm:py-6 lg:h-[356px] lg:px-5 lg:py-5">
+    <FrameShell className="flex h-[360px] flex-col justify-between p-6 sm:h-[400px] sm:p-8 lg:h-[calc(6*var(--cell))] lg:p-10">
       <p className="max-w-[520px] font-mono text-[clamp(0.98rem,1.1vw,1rem)] leading-[1.32] tracking-[-0.05em] text-[var(--muted)]">
         {testimonialQuote}
       </p>
 
-      <div className="grid gap-5 pt-5 sm:grid-cols-2 sm:gap-6 lg:pt-5 lg:gap-6">
+      <div className="grid gap-5 pt-5 sm:grid-cols-2 sm:gap-6 lg:gap-6 lg:pt-5">
         <MetaBlock icon={BriefcaseBusiness} label="Head of Machine Learning" />
         <MetaBlock icon={Building2} label="Enterprise SaaS Company" />
       </div>
-    </article>
+    </FrameShell>
   );
 }
 
