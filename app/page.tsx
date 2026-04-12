@@ -24,7 +24,7 @@ export default function Home() {
       */}
       <div
         className="relative z-10 mx-auto flex w-full max-w-[1170px] flex-col px-5 sm:px-8 xl:px-0"
-        style={{ paddingTop: "var(--cell)" }}
+        style={{ paddingTop: "calc(var(--cell) / 2)" }}
       >
         <LandingHero />
 
@@ -63,8 +63,8 @@ export default function Home() {
           <LandingCtaFooter />
         </div>
 
-        {/* Trailing 3-cell gap so the last section doesn't butt against the bottom */}
-        <div style={{ height: "var(--gap)" }} />
+        {/* Trailing 1-cell gap so the last section doesn't butt against the bottom */}
+        <div style={{ height: "var(--cell)" }} />
       </div>
     </main>
   );

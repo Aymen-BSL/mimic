@@ -31,7 +31,10 @@ export function GridBackground({ className }: GridBackgroundProps) {
         // Align vertical lines with the 1170 px section container's edges on desktop.
         // On viewports narrower than 1170 px the column fills the full width, so
         // we clamp to 0 to avoid a negative shift that would misalign the grid.
-        backgroundPosition: "max(0px, calc((100% - 1170px) / 2)) 0",
+        // The Y coordinate is shifted by half a cell to align with page.tsx's top padding,
+        // making the first visible row half-height as requested.
+        backgroundPosition:
+          "max(0px, calc((100% - 1170px) / 2)) calc(var(--cell) / 2)",
       }}
     />
   );
