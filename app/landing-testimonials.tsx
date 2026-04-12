@@ -29,7 +29,7 @@ export function LandingTestimonials() {
 
 function TestimonialPortraitImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <FrameShell className="flex h-[360px] w-full border-none p-0 shadow-none sm:h-[400px] lg:h-[calc(6*var(--cell))]">
+    <FrameShell className="flex w-full border-none p-0 shadow-none aspect-square sm:aspect-square lg:aspect-auto lg:h-[calc(6*var(--cell))]">
       <img
         alt={alt}
         className="h-full w-full object-cover object-[center_20%]"
@@ -41,7 +41,7 @@ function TestimonialPortraitImage({ src, alt }: { src: string; alt: string }) {
 
 function TestimonialCard() {
   return (
-    <FrameShell className="flex h-[360px] flex-col justify-between p-6 sm:h-[400px] sm:p-8 lg:h-[calc(6*var(--cell))] lg:p-10">
+    <FrameShell className="flex min-h-[360px] flex-col justify-between p-6 sm:min-h-[400px] sm:p-8 lg:min-h-0 lg:h-[calc(6*var(--cell))] lg:p-10">
       <p className="max-w-[520px] font-mono text-[clamp(0.98rem,1.1vw,1rem)] leading-[1.32] tracking-[-0.05em] text-[var(--muted)]">
         {testimonialQuote}
       </p>

@@ -23,7 +23,7 @@ export default function Home() {
         pt = 1 grid row of visible background before the first section starts.
       */}
       <div
-        className="relative z-10 mx-auto flex w-full max-w-[1170px] flex-col"
+        className="relative z-10 mx-auto flex w-full max-w-[1170px] flex-col px-5 sm:px-8 xl:px-0"
         style={{ paddingTop: "var(--cell)" }}
       >
         <LandingHero />
