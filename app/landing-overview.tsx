@@ -23,21 +23,18 @@ const overviewCards = [
 
 export function LandingOverview() {
   return (
-    <FrameShell
-      id="product"
-      className="w-full p-0"
-    >
+    <FrameShell id="product" className="w-full p-0">
       <section className="bg-[var(--paper)]">
         <div className="px-6 py-8 sm:px-8 lg:px-10 lg:py-[39px]">
           <div className="max-w-[760px] space-y-6">
-            <h2 className="max-w-[620px] font-mono text-[clamp(2.8rem,5vw,4.6rem)] leading-[0.95] tracking-[-0.08em] text-[var(--ink)]">
+            <h2 className="max-w-[680px] font-mono text-[clamp(2.8rem,5vw,4.6rem)] leading-[0.95] tracking-[-0.08em] text-[var(--ink)]">
               Smarter data, all in one place.
             </h2>
             <p className="max-w-[740px] font-mono text-base leading-[1.45] tracking-[-0.05em] text-[var(--muted)] lg:text-lg">
-              Power your AI models with high-quality, privacy-safe synthetic data
-              generated, validated, and deployed from a single platform. Accelerate
-              training, improve accuracy, and reduce risk across every machine
-              learning workflow.
+              Power your AI models with high-quality, privacy-safe synthetic
+              data generated, validated, and deployed from a single platform.
+              Accelerate training, improve accuracy, and reduce risk across
+              every machine learning workflow.
             </p>
           </div>
         </div>
@@ -83,7 +80,11 @@ function OverviewCard({
     <article className={`feature-card ${compact ? "lg:min-h-0" : ""}`}>
       <div className="flex items-center gap-2">
         <span className="inline-flex h-8 w-8 items-center justify-center bg-black/8 p-[5px] backdrop-blur-sm">
-          <img alt="" className="h-full w-full object-contain" src={card.icon} />
+          <img
+            alt=""
+            className="h-full w-full object-contain"
+            src={card.icon}
+          />
         </span>
         <h3 className="font-mono text-base tracking-[-0.05em] text-[var(--ink)]">
           {card.title}

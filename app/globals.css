@@ -1,16 +1,63 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f7f8f3;
-  --foreground: #111111;
   --paper: #f7f8f3;
   --ink: #111111;
   --muted: rgba(17, 17, 17, 0.62);
   --grid-line: rgba(17, 17, 17, 0.08);
   /* Grid rhythm – all section offsets are derived from these */
-  --cell: 78px;
+  /* Smaller on mobile so gaps/padding feel proportional */
+  --cell: 52px;
   /* Standard gap between independent sections = 3 grid rows */
   --gap: calc(3 * var(--cell));
+  --background: #f7f8f3;
+  --foreground: #111111;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* ── Responsive cell size ───────────────────────────────────────── */
+@media (min-width: 640px) {
+  :root {
+    --cell: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --cell: 78px;
+  }
 }
 
 @theme inline {
@@ -19,34 +66,57 @@
   --color-paper: var(--paper);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
-.grid-surface {
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: var(--cell) var(--cell);
-  /*
-    Shift the grid origin so vertical lines fall exactly on the section container's
-    left and right borders at any viewport width.
-    1170px = 15 × 78px, so once the left border is on a line, right border
-    is also exactly 15 cells away — always on a grid line.
-  */
-  background-position: calc((100% - 1170px) / 2) 0;
-}
+/* .grid-surface is no longer used — grid is now rendered by <GridBackground> component */
 
 .section-shell {
   background: rgba(247, 248, 243, 0.96);
@@ -122,4 +192,143 @@ body {
       rgba(0, 0, 0, 0) 16px
     ),
     linear-gradient(90deg, #f5f5f5 0%, #fafafa 100%);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Hamburger button
+══════════════════════════════════════════════════════════════════ */
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  transform-origin: center;
+  transition:
+    transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 180ms ease;
+}
+
+/* Animate to ✕ when open */
+.hamburger-bar--top-open {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger-bar--mid-open {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger-bar--bot-open {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mobile nav drawer
+══════════════════════════════════════════════════════════════════ */
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav--open {
+  max-height: 400px;
+}
+
+.mobile-nav-item {
+  display: block;
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.06);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1.05rem;
+  letter-spacing: -0.05em;
+  color: var(--muted);
+  transition: color 150ms ease;
+}
+
+.mobile-nav-item:first-child {
+  margin-top: 0.75rem;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mobile-nav-item--active {
+  color: var(--ink);
+}
+
+.mobile-nav-item--disabled {
+  cursor: default;
+}
+
+a.mobile-nav-item:hover:not(.mobile-nav-item--disabled) {
+  color: var(--ink);
 }

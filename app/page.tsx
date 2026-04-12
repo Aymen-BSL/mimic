@@ -1,3 +1,4 @@
+import { GridBackground } from "@/components/grid-background";
 import { LandingHero } from "@/app/landing-hero";
 import { LandingLogos } from "@/app/landing-logos";
 import { LandingOverview } from "@/app/landing-overview";
@@ -5,17 +6,19 @@ import { LandingPipeline } from "@/app/landing-pipeline";
 
 export default function Home() {
   return (
-    <main className="grid-surface min-h-screen">
+    <main className="relative min-h-screen bg-[var(--paper)]">
+      {/* Aceternity-style grid: absolute child that fills <main> and scrolls with it */}
+      <GridBackground />
       {/*
         The single centered column.
           max-w-[1170px] = 15 × 78 px = exactly 15 grid cells wide.
-          background-position in globals.css shifts the grid so vertical lines
-          land on the left/right borders of this column at every viewport width.
+          GridBackground's background-position shifts the grid so its vertical
+          lines land on the left/right borders of this column at every width.
 
         pt = 1 grid row of visible background before the first section starts.
       */}
       <div
-        className="mx-auto flex w-full max-w-[1170px] flex-col"
+        className="relative z-10 mx-auto flex w-full max-w-[1170px] flex-col"
         style={{ paddingTop: "var(--cell)" }}
       >
         <LandingHero />

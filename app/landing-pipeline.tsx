@@ -112,11 +112,11 @@ function PipelinePanel({ index }: { index: number }) {
 
 function StatisticalPanel() {
   return (
-    <div className="space-y-4 bg-[#343434] p-3 text-white">
-      <div className="flex items-center justify-between border-b border-white/10 pb-3 font-mono text-[0.72rem] tracking-[-0.05em] text-white/80">
-        <span>Statistical Fidelity Check</span>
-        <span className="inline-flex items-center gap-2 bg-[#22643e] px-2 py-1 text-[0.62rem] uppercase tracking-[0.15em] text-white">
-          <span className="inline-block h-2 w-2 bg-white" />
+    <div className="space-y-4 bg-[#343434] p-3 text-white overflow-hidden">
+      <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 font-mono text-[0.72rem] tracking-[-0.05em] text-white/80">
+        <span className="truncate">Statistical Fidelity Check</span>
+        <span className="inline-flex shrink-0 items-center gap-2 bg-[#22643e] px-2 py-1 text-[0.62rem] uppercase tracking-[0.15em] text-white">
+          <span className="inline-block h-2 w-2 shrink-0 bg-white" />
           High Fidelity 98.8%
         </span>
       </div>
@@ -160,11 +160,11 @@ function StatisticalPanel() {
 
 function GenerationPanel() {
   return (
-    <div className="space-y-4 bg-[#343434] p-3 text-white">
-      <div className="flex items-center justify-between border-b border-white/10 pb-3 font-mono text-[0.72rem] tracking-[-0.05em] text-white/80">
-        <span>Generation Job: &quot;Customer_Transactions_10M&quot;</span>
-        <span className="inline-flex items-center gap-2 bg-[#22643e] px-2 py-1 text-[0.62rem] uppercase tracking-[0.15em] text-white">
-          <span className="inline-block h-2 w-2 animate-pulse bg-white" />
+    <div className="space-y-4 bg-[#343434] p-3 text-white overflow-hidden">
+      <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 font-mono text-[0.72rem] tracking-[-0.05em] text-white/80">
+        <span className="truncate">Generation Job: &quot;Customer_Transactions_10M&quot;</span>
+        <span className="inline-flex shrink-0 items-center gap-2 bg-[#22643e] px-2 py-1 text-[0.62rem] uppercase tracking-[0.15em] text-white">
+          <span className="inline-block h-2 w-2 shrink-0 animate-pulse bg-white" />
           Running
         </span>
       </div>
@@ -211,11 +211,11 @@ function GenerationPanel() {
 
 function IntegrationPanel() {
   return (
-    <div className="space-y-4 bg-[#343434] p-3 text-white">
+    <div className="space-y-4 bg-[#343434] p-3 text-white overflow-hidden">
       <div className="border-b border-white/10 pb-3 font-mono text-[0.72rem] tracking-[-0.05em] text-white/80">
         Integrations &amp; API Keys
       </div>
-      <div className="flex gap-4 border-b border-white/10 font-mono text-[0.64rem] tracking-[-0.04em] text-white/50">
+      <div className="flex gap-4 border-b border-white/10 font-mono text-[0.64rem] tracking-[-0.04em] text-white/50 overflow-x-auto whitespace-nowrap scrollbar-hide">
         <span className="border-b border-white pb-2 text-white">Active Connectors</span>
         <span className="pb-2">API Documentation</span>
         <span className="pb-2">Webhooks</span>
@@ -236,7 +236,7 @@ function IntegrationPanel() {
           <p className="text-white/45"># Connect to the pipeline</p>
           <p>client = md.Client(api_key=&quot;mk_live_8392...&quot;)</p>
           <p className="text-white/45"># Pull synthetic batch</p>
-          <p>df = client.pull(source=&quot;Production_DB&quot;, privacy_budget=0.5)</p>
+          <p className="overflow-hidden text-ellipsis whitespace-nowrap">df = client.pull(source=&quot;Production_DB&quot;, ...)</p>
         </div>
       </div>
     </div>
@@ -246,13 +246,13 @@ function IntegrationPanel() {
 function ConnectorRow({ name, status }: { name: string; status: string }) {
   return (
     <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-2 text-white">
-      <div className="flex items-center gap-2">
-        <span className="inline-flex h-4 w-4 border border-white/20 bg-white/10" />
-        <span>{name}</span>
+      <div className="flex items-center gap-2 min-w-0">
+        <span className="inline-flex h-4 w-4 shrink-0 border border-white/20 bg-white/10" />
+        <span className="truncate">{name}</span>
       </div>
-      <div className="flex items-center gap-3">
-        <span className="inline-flex items-center gap-2 text-white/70">
-          <span className="h-2 w-2 bg-[#98d59d]" />
+      <div className="flex shrink-0 items-center gap-3">
+        <span className="hidden items-center gap-2 text-white/70 sm:inline-flex">
+          <span className="h-2 w-2 shrink-0 bg-[#98d59d]" />
           {status}
         </span>
         <span className="border border-white px-2 py-1 text-white">Configure</span>
