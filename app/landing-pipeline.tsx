@@ -1,4 +1,13 @@
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { FrameShell } from "@/app/frame-shell";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const PIPELINE_BG =
   "https://www.figma.com/api/mcp/asset/6ba309b8-c531-4fca-9500-118437daccb5";
@@ -25,12 +34,29 @@ const pipelineFeatures = [
 ];
 
 export function LandingPipeline() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  useGSAP(() => {
+    gsap.utils.toArray(".pipeline-feature-anim").forEach((el: any) => {
+      gsap.from(el, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+        }
+      });
+    });
+  }, { scope: containerRef });
+
   return (
     <FrameShell
       id="solutions"
       className="w-full px-6 py-8 sm:px-8 lg:px-10 lg:py-10"
     >
-      <div className="space-y-16">
+      <div ref={containerRef} className="space-y-16">
         <div className="mx-auto max-w-[790px] space-y-6 text-center">
           <h2 className="font-mono text-[clamp(2.7rem,5vw,4.3rem)] leading-[0.98] tracking-[-0.08em] text-[var(--ink)]">
             Powerful Features for Every ML Pipeline
@@ -68,7 +94,7 @@ function PipelineFeature({
 
   return (
     <div
-      className={`grid items-center gap-8 lg:grid-cols-[minmax(0,572px)_438px] lg:gap-10 ${
+      className={`pipeline-feature-anim grid items-center gap-8 lg:grid-cols-[minmax(0,572px)_438px] lg:gap-10 ${
         mediaFirst ? "" : "lg:grid-cols-[438px_minmax(0,572px)]"
       }`}
     >

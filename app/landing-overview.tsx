@@ -1,4 +1,13 @@
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { FrameShell } from "@/app/frame-shell";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FEATURE_BG =
   "https://www.figma.com/api/mcp/asset/dccc60dc-0628-4a43-bfca-8310b5f04adb";
@@ -22,9 +31,25 @@ const overviewCards = [
 ];
 
 export function LandingOverview() {
+  const containerRef = useRef<HTMLElement>(null);
+  
+  useGSAP(() => {
+    gsap.from(".feature-card-anim", {
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%",
+      }
+    });
+  }, { scope: containerRef });
+
   return (
     <FrameShell id="product" className="w-full p-0">
-      <section className="bg-[var(--paper)]">
+      <section ref={containerRef} className="bg-[var(--paper)]">
         <div className="px-6 py-8 sm:px-8 lg:px-10 lg:py-[39px]">
           <div className="max-w-[760px] space-y-6">
             <h2 className="max-w-[680px] font-mono text-[clamp(2.8rem,5vw,4.6rem)] leading-[0.95] tracking-[-0.08em] text-[var(--ink)]">
@@ -77,7 +102,7 @@ function OverviewCard({
   compact?: boolean;
 }) {
   return (
-    <article className={`feature-card ${compact ? "lg:min-h-0" : ""}`}>
+    <article className={`feature-card-anim feature-card ${compact ? "lg:min-h-0" : ""}`}>
       <div className="flex items-center gap-2">
         <span className="inline-flex h-8 w-8 items-center justify-center bg-black/8 p-[5px] backdrop-blur-sm">
           <img

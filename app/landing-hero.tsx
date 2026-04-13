@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 import { FrameShell } from "@/app/frame-shell";
 
@@ -18,9 +20,21 @@ const navItems = [
 
 export function LandingHero() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    gsap.from(".hero-anim", {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power2.out",
+      delay: 0.1,
+    });
+  }, { scope: containerRef });
 
   return (
-    <section className="flex w-full flex-col">
+    <section ref={containerRef} className="flex w-full flex-col">
       <FrameShell className="border-b-0" corners="top">
         <header className="relative px-6 py-5 sm:px-8 lg:px-10 mt-0.5">
           {/* Top bar: logo + hamburger (mobile) / logo + nav (desktop) */}
@@ -125,14 +139,14 @@ export function LandingHero() {
         <div className="absolute inset-0" />
         <div className="relative z-10 flex min-h-[420px] sm:min-h-[520px] lg:min-h-[700px] items-center px-6 py-10 sm:px-8 lg:px-[68px] lg:py-16">
           <div className="max-w-[400px] md:max-w-[420px] lg:max-w-[560px] space-y-6 lg:space-y-8">
-            <h1 className="max-w-[392px] md:max-w-[420px] lg:max-w-[540px] font-mono font-light text-[clamp(2.2rem,5vw,4.2rem)] leading-[0.92] tracking-[-0.08em] text-white">
+            <h1 className="hero-anim max-w-[392px] md:max-w-[420px] lg:max-w-[540px] font-mono font-light text-[clamp(2.2rem,5vw,4.2rem)] leading-[0.92] tracking-[-0.08em] text-white">
               Generate Better Data, Build Better AI
             </h1>
-            <p className="max-w-[392px] font-mono text-[clamp(0.9rem,2.5vw,1.125rem)] leading-[1.45] tracking-[-0.05em] text-white/60">
+            <p className="hero-anim max-w-[392px] font-mono text-[clamp(0.9rem,2.5vw,1.125rem)] leading-[1.45] tracking-[-0.05em] text-white/60">
               Create high-quality synthetic datasets that protect privacy while
               accelerating your machine learning projects.
             </p>
-            <Link href="#product" className="hero-button">
+            <Link href="#product" className="hero-anim hero-button">
               <span>Start Generating</span>
               <span aria-hidden="true" className="text-xl leading-none">
                 -&gt;

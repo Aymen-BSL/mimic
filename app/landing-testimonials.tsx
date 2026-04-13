@@ -1,4 +1,13 @@
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { BriefcaseBusiness, Building2 } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 import { FrameShell } from "@/app/frame-shell";
 
@@ -6,9 +15,27 @@ const testimonialQuote =
   "Switching to synthetic datasets completely changed our workflow. We reduced data preparation time from weeks to hours, improved model accuracy on edge cases, and eliminated privacy concerns overnight. It gave our AI team the freedom to experiment faster than ever.";
 
 export function LandingTestimonials() {
+  const containerRef = useRef<HTMLElement>(null);
+  
+  useGSAP(() => {
+    gsap.utils.toArray(".test-row-anim").forEach((el: any) => {
+      gsap.from(el.children, {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+        }
+      });
+    });
+  }, { scope: containerRef });
+
   return (
-    <section id="company" className="w-full space-y-[var(--cell)]">
-      <div className="grid gap-[var(--cell)] lg:grid-cols-[5fr_9fr]">
+    <section ref={containerRef} id="company" className="w-full space-y-[var(--cell)]">
+      <div className="test-row-anim grid gap-[var(--cell)] lg:grid-cols-[5fr_9fr]">
         <TestimonialPortraitImage
           alt="Portrait of testimonial customer 1"
           src="/imagery/testimonial-person-1.png"
@@ -16,7 +43,7 @@ export function LandingTestimonials() {
         <TestimonialCard />
       </div>
 
-      <div className="grid gap-[var(--cell)] lg:grid-cols-[9fr_5fr]">
+      <div className="test-row-anim grid gap-[var(--cell)] lg:grid-cols-[9fr_5fr]">
         <TestimonialCard />
         <TestimonialPortraitImage
           alt="Portrait of testimonial customer 2"
