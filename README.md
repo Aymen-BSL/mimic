@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mimic
 
-## Getting Started
+Mimic is a professional web design and frontend implementation project created
+for **Pursue Studio**, a web design studio. The responsive product landing page
+presents a synthetic-data platform for modern machine-learning teams through a
+grid-led editorial interface.
 
-First, run the development server:
+![Mimic hero artwork](public/imagery/hero-art.png)
+
+## Project context
+
+This repository represents professional studio work produced for Pursue Studio.
+The design and implementation are structured as production-oriented work, with a deliberate visual system, responsive behavior, reusable sections, and maintainable
+frontend architecture.
+
+## Highlights
+
+- Responsive landing experience with desktop and mobile navigation
+- Grid-aligned layout built around a shared, breakpoint-aware spacing system
+- Local Mimic, partner, overview, and testimonial assets
+- Animated hero, feature cards, pipeline panels, and testimonials
+- Product overview for data generation, model training, and compliance
+- Interactive FAQ, comparison table, enterprise section, and closing CTA
+- Strict TypeScript configuration and production-ready Next.js build pipeline
+
+## Tech stack
+
+| Layer            | Technology                                  |
+| ---------------- | ------------------------------------------- |
+| Framework        | Next.js 16.2 with the App Router            |
+| UI runtime       | React 19.2                                  |
+| Language         | TypeScript                                  |
+| Styling          | Tailwind CSS 4 and custom CSS design tokens |
+| Motion           | GSAP, `@gsap/react`, and ScrollTrigger      |
+| UI foundations   | Radix UI and shadcn                         |
+| Images and fonts | `next/image` and `next/font`                |
+| Code quality     | ESLint with the Next.js configuration       |
+
+## Getting started
+
+### Requirements
+
+- Node.js 20.9 or newer
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/Aymen-BSL/mimic.git
+cd mimic
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The development server supports Fast Refresh, so changes under `app/`,
+`components/`, and `public/` appear as you work.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available scripts
 
-## Learn More
+| Command         | Purpose                                             |
+| --------------- | --------------------------------------------------- |
+| `npm run dev`   | Start the local Turbopack development server        |
+| `npm run build` | Create and type-check an optimized production build |
+| `npm run start` | Serve the production build                          |
+| `npm run lint`  | Run ESLint across the project                       |
 
-To learn more about Next.js, take a look at the following resources:
+## Page composition
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The home page is assembled in `app/page.tsx` from focused landing-section
+components:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Hero and responsive navigation
+2. Partner logo bar
+3. Product overview
+4. ML pipeline features
+5. Traditional-data comparison
+6. Enterprise capabilities
+7. Customer testimonials
+8. Frequently asked questions
+9. Closing CTA and footer
 
-## Deploy on Vercel
+Each section is intentionally isolated in an `app/landing-*.tsx` file, keeping
+content, layout, and animation behavior easy to find and update.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Grid system
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The visual rhythm is controlled by CSS variables in `app/globals.css`:
+
+| Breakpoint         | Grid cell |
+| ------------------ | --------: |
+| Mobile             |    `52px` |
+| `640px` and above  |    `64px` |
+| `1024px` and above |    `78px` |
+
+Independent sections use a three-cell gap through `--gap`. On desktop, the
+content column is `1170px` wide—exactly 15 grid cells. The hero, partner rows,
+and overview heights are also derived from `--cell`, ensuring their borders
+land on the background grid instead of drifting between lines.
+
+When changing vertical spacing, prefer whole-cell calculations such as
+`calc(3 * var(--cell))` rather than unrelated fixed pixel values.
+
+## Project structure
+
+```text
+app/
+├── layout.tsx                 Root metadata, fonts, and document layout
+├── page.tsx                   Landing-page composition and section spacing
+├── globals.css                Design tokens, grid rhythm, and shared styles
+├── frame-shell.tsx            Framed section surface and corner markers
+└── landing-*.tsx              Individual landing-page sections
+components/
+└── grid-background.tsx        Responsive page-wide grid renderer
+lib/
+└── utils.ts                   Shared class-name utility
+public/
+├── imagery/                   Hero and testimonial imagery
+├── logos/                     Mimic and partner SVG logos
+└── overview/                  Overview background and feature icons
+```
+
+## Customization
+
+- Update page copy and section content in the relevant `app/landing-*.tsx`
+  component.
+- Adjust colors, typography, grid sizes, and shared surfaces in
+  `app/globals.css`.
+- Change the order or spacing of sections in `app/page.tsx`.
+- Replace brand assets in `public/logos/`, overview media in
+  `public/overview/`, and photography in `public/imagery/`.
+- Keep intrinsic image dimensions in sync with their `next/image` declarations
+  when replacing SVG assets.
+
+## Production
+
+Create and serve a production build locally:
+
+```bash
+npm run build
+npm run start
+```
+
+The project can be deployed to Vercel or any platform that supports the Next.js
+Node.js runtime. Builds require network access for the Geist fonts loaded
+through `next/font`.
