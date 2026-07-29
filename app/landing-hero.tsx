@@ -1,14 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { FrameShell } from "@/app/frame-shell";
-
-const BRAND_MARK =
-  "https://www.figma.com/api/mcp/asset/4d922e6f-8dd7-4b7f-b91a-31ffe5de85c9";
 
 const navItems = [
   { href: "#product", label: "Product", active: true },
@@ -36,18 +34,16 @@ export function LandingHero() {
   return (
     <section ref={containerRef} className="flex w-full flex-col">
       <FrameShell className="border-b-0" corners="top">
-        <header className="relative px-6 py-5 sm:px-8 lg:px-10 mt-0.5">
+        <header className="relative px-6 sm:px-8 lg:px-10">
           {/* Top bar: logo + hamburger (mobile) / logo + nav (desktop) */}
-          <div className="flex items-center justify-between lg:justify-start lg:gap-0">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <img
+          <div className="hero-nav-row flex items-center justify-between lg:justify-start lg:gap-0">
+            <Link href="/" className="inline-flex items-center">
+              <Image
                 alt="Mimic"
-                className="h-7 w-[33px] object-contain"
-                src={BRAND_MARK}
+                height={28}
+                src="/logos/mimic.svg"
+                width={106}
               />
-              <span className="font-mono text-[1.45rem] tracking-[-0.04em] text-[var(--ink)]">
-                Mimic
-              </span>
             </Link>
 
             {/* Desktop nav */}
@@ -130,14 +126,14 @@ export function LandingHero() {
         </header>
       </FrameShell>
 
-      <div className="relative isolate min-h-[420px] overflow-hidden sm:min-h-[520px] lg:min-h-[700px] mt-0.4">
+      <div className="hero-visual relative isolate overflow-hidden">
         <img
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
           src="/imagery/hero-art.png"
         />
         <div className="absolute inset-0" />
-        <div className="relative z-10 flex min-h-[420px] sm:min-h-[520px] lg:min-h-[700px] items-center px-6 py-10 sm:px-8 lg:px-[68px] lg:py-16">
+        <div className="relative z-10 flex h-full items-center px-6 py-10 sm:px-8 lg:px-[68px] lg:py-16">
           <div className="max-w-[400px] md:max-w-[420px] lg:max-w-[560px] space-y-6 lg:space-y-8">
             <h1 className="hero-anim max-w-[392px] md:max-w-[420px] lg:max-w-[540px] font-mono font-light text-[clamp(2.2rem,5vw,4.2rem)] leading-[0.92] tracking-[-0.08em] text-white">
               Generate Better Data, Build Better AI

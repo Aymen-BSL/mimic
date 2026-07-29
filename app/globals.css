@@ -176,14 +176,38 @@ body {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02);
 }
 
+.hero-nav-row,
+.logo-grid-cell {
+  height: var(--cell);
+}
+
+.hero-visual {
+  height: calc(9 * var(--cell));
+}
+
+.overview-intro {
+  height: calc(8 * var(--cell));
+}
+
 .overview-visual {
-  min-height: 620px;
+  height: calc(12 * var(--cell));
+  min-height: 0;
+}
+
+@media (min-width: 640px) {
+  .overview-intro {
+    height: calc(6 * var(--cell));
+  }
+
+  .overview-visual {
+    height: calc(10 * var(--cell));
+  }
 }
 
 @media (min-width: 1024px) {
+  .overview-intro,
   .overview-visual {
-    height: 388px;
-    min-height: 388px;
+    height: calc(5 * var(--cell));
   }
 }
 

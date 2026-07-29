@@ -1,25 +1,37 @@
+import Image from "next/image";
+
 import { FrameShell } from "@/app/frame-shell";
 
 const PARTNER_LOGOS = [
   {
     alt: "Voxel Labs",
-    src: "https://www.figma.com/api/mcp/asset/9427abc8-8622-4496-b3c4-4ae3a8323ac5",
+    height: 36,
+    src: "/logos/voxel-labs.svg",
+    width: 171,
   },
   {
     alt: "Warpspeed",
-    src: "https://www.figma.com/api/mcp/asset/c72e518c-fbc1-45e2-b95e-16d555a9254d",
+    height: 27,
+    src: "/logos/warpspeed.svg",
+    width: 180,
   },
   {
     alt: "Mastermail",
-    src: "https://www.figma.com/api/mcp/asset/9dbf6745-34c7-4f68-83e3-e6d3ca237c6f",
+    height: 36,
+    src: "/logos/mastermail.svg",
+    width: 163,
   },
   {
     alt: "Leapyear",
-    src: "https://www.figma.com/api/mcp/asset/10c780ab-7328-4f85-baba-271b9f221f6a",
+    height: 29,
+    src: "/logos/leapyear.svg",
+    width: 146,
   },
   {
     alt: "Lightspeed",
-    src: "https://www.figma.com/api/mcp/asset/9fd9ccc5-ecaf-49a3-8227-024d5199fd57",
+    height: 25,
+    src: "/logos/lightspeed.svg",
+    width: 172,
   },
 ];
 
@@ -30,12 +42,14 @@ export function LandingLogos() {
         {PARTNER_LOGOS.map((logo) => (
           <div
             key={logo.alt}
-            className="flex h-[82px] items-center justify-center px-6 py-4 opacity-60"
+            className="logo-grid-cell flex min-w-0 items-center justify-center overflow-hidden px-4 py-2 sm:px-6"
           >
-            <img
+            <Image
               alt={logo.alt}
-              className="max-h-11 w-auto object-contain"
+              className="h-auto max-h-9 max-w-full object-contain"
+              height={logo.height}
               src={logo.src}
+              width={logo.width}
             />
           </div>
         ))}

@@ -1,9 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { FrameShell } from "@/app/frame-shell";
-
-const BRAND_MARK =
-  "https://www.figma.com/api/mcp/asset/4d922e6f-8dd7-4b7f-b91a-31ffe5de85c9";
 
 const footerNav = [
   { href: "#product", label: "Product", active: true },
@@ -57,15 +55,13 @@ export function LandingCtaFooter() {
         </div>
 
         <footer className="grid gap-8 border-t border-black/6 pt-8 lg:grid-cols-[1fr_auto_auto] lg:items-end lg:gap-12">
-          <Link href="/" className="inline-flex items-center gap-3 self-start lg:self-end">
-            <img
+          <Link href="/" className="inline-flex items-center self-start lg:self-end">
+            <Image
               alt="Mimic"
-              className="h-7 w-[33px] object-contain"
-              src={BRAND_MARK}
+              height={28}
+              src="/logos/mimic.svg"
+              width={106}
             />
-            <span className="font-mono text-[1.45rem] tracking-[-0.04em] text-[var(--ink)]">
-              Mimic
-            </span>
           </Link>
 
           <div className="space-y-3 lg:justify-self-start">
